@@ -49,7 +49,7 @@ const registerUser = async (req, res) => {
 
         });
 
-e
+
 
         res.status(201).json({
 
