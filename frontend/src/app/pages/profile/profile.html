@@ -1,0 +1,184 @@
+<div class="profile-page">
+
+  <nav class="navbar">
+
+    <div class="logo">
+      UserPortal
+    </div>
+
+    <div class="nav-links">
+
+      <a routerLink="/dashboard">
+        Dashboard
+      </a>
+
+      <a routerLink="/profile" class="active">
+        Profile
+      </a>
+
+      <a routerLink="/upload">
+        Upload Images
+      </a>
+
+      <a routerLink="/images">
+        My Images
+      </a>
+
+      <button (click)="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </nav>
+
+
+  <main class="profile-container">
+
+    <div class="profile-card">
+
+      <div class="profile-header">
+
+        <div class="profile-avatar">
+          👤
+        </div>
+
+        <div>
+          <h1>My Profile</h1>
+
+          <p>
+            Update your personal information
+          </p>
+        </div>
+
+      </div>
+
+
+      @if (message) {
+        <div class="success-message">
+          {{ message }}
+        </div>
+      }
+
+
+
+      @if (error) {
+        <div class="error-message">
+          {{ error }}
+        </div>
+      }
+
+
+      <form (ngSubmit)="updateProfile()">
+
+
+        <div class="form-group">
+
+          <label for="name">
+            Full Name
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            name="name"
+            [(ngModel)]="name"
+            placeholder="Enter your full name"
+            required
+          />
+
+        </div>
+
+
+
+        <div class="form-group">
+
+          <label for="email">
+            Email
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            placeholder="Enter your email"
+            disabled
+          />
+
+          <small>
+            Email cannot be changed.
+          </small>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+          <label for="phone">
+            Phone Number
+          </label>
+
+          <input
+            id="phone"
+            type="tel"
+            name="phone"
+            [(ngModel)]="phone"
+            placeholder="Enter your phone number"
+          />
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="address">
+            Address
+          </label>
+
+          <textarea
+            id="address"
+            name="address"
+            rows="4"
+            [(ngModel)]="address"
+            placeholder="Enter your address"
+          ></textarea>
+
+        </div>
+
+
+        <div class="buttons">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            routerLink="/dashboard">
+
+            Cancel
+
+          </button>
+
+
+         <button
+  type="submit"
+  class="save-btn"
+  [disabled]="isSaving">
+
+  @if (isSaving) {
+    Saving...
+  } @else {
+    Save Changes
+  }
+
+</button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </main>
+
+</div>

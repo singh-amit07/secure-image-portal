@@ -1,0 +1,101 @@
+<div class="dashboard">
+
+  <nav class="navbar">
+
+  <div class="logo">
+    UserPortal
+  </div>
+
+  <div class="nav-links">
+
+    <a routerLink="/dashboard">
+      Dashboard
+    </a>
+
+    <a routerLink="/profile">
+      Profile
+    </a>
+
+    <a routerLink="/upload">
+      Upload Images
+    </a>
+
+    <a routerLink="/images">
+      My Images
+    </a>
+
+   <button (click)="logout()">
+  Logout
+</button>
+
+  </div>
+
+</nav>
+
+
+  <main class="content">
+
+    <h1>Welcome to Dashboard 👋</h1>
+
+    <p>
+      Manage your profile and images from here.
+    </p>
+
+
+    <div class="cards">
+
+      <div class="card">
+
+        <div class="icon">👤</div>
+
+        <h2>My Profile</h2>
+
+        <p>
+          View and edit your personal information.
+        </p>
+
+        <a routerLink="/profile">
+          Edit Profile →
+        </a>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">📤</div>
+
+        <h2>Upload Images</h2>
+
+        <p>
+          Select and upload multiple images.
+        </p>
+
+        <a routerLink="/upload">
+          Upload Images →
+        </a>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">🖼️</div>
+
+        <h2>My Images</h2>
+
+        <p>
+          View all your uploaded images.
+        </p>
+
+        <a routerLink="/images">
+          View Images →
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>

@@ -1,0 +1,164 @@
+<div class="upload-page">
+
+
+  <nav class="navbar">
+
+    <div class="logo">
+      UserPortal
+    </div>
+
+    <div class="nav-links">
+
+      <a routerLink="/dashboard">
+        Dashboard
+      </a>
+
+      <a routerLink="/profile">
+        Profile
+      </a>
+
+      <a routerLink="/upload" class="active">
+        Upload Images
+      </a>
+
+      <a routerLink="/images">
+        My Images
+      </a>
+
+      <button (click)="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </nav>
+
+
+
+  <main class="upload-container">
+
+    <div class="upload-card">
+
+      <div class="upload-header">
+
+        <div class="upload-icon">
+          📷
+        </div>
+
+        <div>
+
+          <h1>Upload Images</h1>
+
+          <p>
+            Select one or multiple images from your device
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="file-section">
+
+        <label class="file-label">
+
+          <span class="choose-icon">
+            📁
+          </span>
+
+          <span>
+            Choose Images
+          </span>
+
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            (change)="onFileSelected($event)"
+          />
+
+        </label>
+
+      </div>
+
+
+
+      @if (message) {
+
+        <div class="success-message">
+          {{ message }}
+        </div>
+
+      }
+
+
+
+      @if (error) {
+
+        <div class="error-message">
+          {{ error }}
+        </div>
+
+      }
+
+
+
+      @if (previews.length > 0) {
+
+        <div class="preview-section">
+
+          <h2>
+            Selected Images
+            ({{ selectedFiles.length }})
+          </h2>
+
+
+          <div class="preview-grid">
+
+            @for (preview of previews; track $index) {
+
+              <div class="preview-card">
+
+                <img
+                  [src]="preview"
+                  alt="Selected image"
+                />
+
+              </div>
+
+            }
+
+          </div>
+
+        </div>
+
+      }
+
+
+     
+
+      <button
+        class="upload-button"
+        type="button"
+        [disabled]="isUploading || selectedFiles.length === 0"
+        (click)="uploadImages()">
+
+        @if (isUploading) {
+
+          Uploading...
+
+        } @else {
+
+          Upload Images
+
+        }
+
+      </button>
+
+
+    </div>
+
+  </main>
+
+</div>

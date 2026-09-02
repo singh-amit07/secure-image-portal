@@ -1,0 +1,130 @@
+<div class="images-page">
+
+
+
+  <nav class="navbar">
+
+    <div class="logo">
+      UserPortal
+    </div>
+
+    <div class="nav-links">
+
+      <a routerLink="/dashboard">
+        Dashboard
+      </a>
+
+      <a routerLink="/profile">
+        Profile
+      </a>
+
+      <a routerLink="/upload">
+        Upload Images
+      </a>
+
+      <a routerLink="/images" class="active">
+        My Images
+      </a>
+
+      <button (click)="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </nav>
+
+
+
+
+  <main class="images-container">
+
+    <div class="images-card">
+
+      <div class="images-header">
+
+        <div>
+
+          <h1>My Images</h1>
+
+          <p>
+            Your uploaded images
+          </p>
+
+        </div>
+
+
+        <div class="image-count">
+
+          {{ totalImages }} Images
+
+        </div>
+
+      </div>
+
+
+
+      @if (error) {
+
+        <div class="error-message">
+          {{ error }}
+        </div>
+
+      }
+
+
+
+      @if (images.length === 0 && !error) {
+
+        <div class="no-images">
+
+          <div class="empty-icon">
+            🖼️
+          </div>
+
+          <h2>No Images Yet</h2>
+
+          <p>
+            Upload your first image to see it here.
+          </p>
+
+          <a
+            routerLink="/upload"
+            class="upload-link">
+
+            Upload Images
+
+          </a>
+
+        </div>
+
+      }
+
+
+
+      @if (images.length > 0) {
+
+        <div class="image-grid">
+
+          @for (image of images; track image._id) {
+
+            <div class="image-card">
+
+              <img
+                [src]="'http://localhost:5000/' + image.filePath"
+                [alt]="image.originalName"
+              />
+
+            </div>
+
+          }
+
+        </div>
+
+      }
+
+    </div>
+
+  </main>
+
+</div>
