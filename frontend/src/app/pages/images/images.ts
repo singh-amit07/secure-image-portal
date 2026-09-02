@@ -35,7 +35,7 @@ export class Images implements OnInit {
     const token = localStorage.getItem('token');
 
     this.http.get<any>(
-      'http://localhost:5000/api/images/my-images',
+      'https://secure-image-portal.onrender.com/api/images/my-images',
       {
         headers: {
           Authorization: `Bearer ${token}`

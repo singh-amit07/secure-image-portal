@@ -32,7 +32,7 @@ export class Login {
 
     this.http
       .post<any>(
-        'http://localhost:5000/api/auth/login',
+        'https://secure-image-portal.onrender.com/api/auth/login',
         loginData
       )
       .subscribe({

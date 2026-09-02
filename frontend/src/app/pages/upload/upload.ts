@@ -81,7 +81,7 @@ export class Upload {
     const token = localStorage.getItem('token');
 
     this.http.post<any>(
-      'http://localhost:5000/api/images/upload',
+      'https://secure-image-portal.onrender.com/api/images/upload',
       formData,
       {
         headers: {

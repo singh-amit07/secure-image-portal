@@ -45,7 +45,7 @@ export class Register {
     };
 
     this.http
-      .post('http://localhost:5000/api/auth/register', userData)
+      .post('https://secure-image-portal.onrender.com/api/auth/register', userData)
       .subscribe({
 
         next: (response: any) => {

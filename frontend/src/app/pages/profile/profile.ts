@@ -42,7 +42,7 @@ export class Profile implements OnInit {
     const token = localStorage.getItem('token');
 
     this.http.get<any>(
-      'http://localhost:5000/api/user/profile',
+      'https://secure-image-portal.onrender.com/api/user/profile',
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -101,7 +101,7 @@ export class Profile implements OnInit {
     const token = localStorage.getItem('token');
 
     this.http.put<any>(
-      'http://localhost:5000/api/user/profile',
+      'https://secure-image-portal.onrender.com/api/user/profile',
       profileData,
       {
         headers: {
