@@ -1,4 +1,5 @@
 const Image = require('../models/Image');
+const cloudinary = require('../config/cloudinary');
 
 
 const uploadImages = async (req, res) => {
@@ -15,11 +16,32 @@ const uploadImages = async (req, res) => {
 
         for (const file of req.files) {
 
+            const result = await new Promise((resolve, reject) => {
+
+                const uploadStream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: `image-upload/users/${req.userId}`,
+                        resource_type: 'image'
+                    },
+                    (error, result) => {
+
+                        if (error) {
+                            reject(error);
+                        } else {
+                            resolve(result);
+                        }
+
+                    }
+                );
+
+                uploadStream.end(file.buffer);
+            });
+
             const image = await Image.create({
                 userId: req.userId,
                 originalName: file.originalname,
-                fileName: file.filename,
-                filePath: `uploads/${req.userId}/${file.filename}`
+                fileName: result.public_id,
+                filePath: result.secure_url
             });
 
             images.push(image);
@@ -32,7 +54,7 @@ const uploadImages = async (req, res) => {
 
     } catch (error) {
 
-        console.error('Upload Images Error:', error);
+        console.error('Cloudinary Upload Error:', error);
 
         res.status(500).json({
             message: 'Image upload failed'

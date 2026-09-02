@@ -1,39 +1,6 @@
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 
-const storage = multer.diskStorage({
-
-    destination: function (req, file, cb) {
-
-        const userFolder = path.join(
-            __dirname,
-            '..',
-            'uploads',
-            req.userId.toString()
-        );
-
-        
-        if (!fs.existsSync(userFolder)) {
-            fs.mkdirSync(userFolder, {
-                recursive: true
-            });
-        }
-
-        cb(null, userFolder);
-    },
-
-    filename: function (req, file, cb) {
-
-        const uniqueName =
-            Date.now() +
-            '-' +
-            file.originalname.replace(/\s+/g, '-');
-
-        cb(null, uniqueName);
-    }
-});
-
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
 
@@ -51,7 +18,6 @@ const fileFilter = (req, file, cb) => {
     }
 };
 
-
 const upload = multer({
     storage: storage,
     fileFilter: fileFilter,
@@ -59,6 +25,5 @@ const upload = multer({
         fileSize: 5 * 1024 * 1024
     }
 });
-
 
 module.exports = upload;
